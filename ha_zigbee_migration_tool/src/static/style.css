@@ -1,0 +1,195 @@
+:root {
+    --fallback-bg: #fafafa;
+    --fallback-card-bg: #ffffff;
+    --fallback-text: #212121;
+    --fallback-secondary-text: #727272;
+    --fallback-primary: #03a9f4;
+    --fallback-success: #4caf50;
+    --fallback-divider: #e0e0e0;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --fallback-bg: #111111;
+        --fallback-card-bg: #1c1c1c;
+        --fallback-text: #e1e1e1;
+        --fallback-secondary-text: #9b9b9b;
+        --fallback-divider: #444444;
+        --fallback-primary: #03a9f4;
+        --fallback-success: #4caf50;
+    }
+}
+
+body {
+    font-family: var(--ha-font-family-body, Roboto, "Segoe UI", sans-serif);
+    background-color: var(--primary-background-color, var(--fallback-bg));
+    color: var(--primary-text-color, var(--fallback-text));
+    padding: 24px;
+    margin: 0;
+}
+
+.header-container {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+h1 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: var(--primary-text-color, var(--fallback-text));
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.device-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+}
+
+.device-label {
+    display: block;
+    cursor: pointer;
+}
+
+.hidden-checkbox {
+    display: none;
+}
+
+/* Base Card State (Unselected) */
+.card-content {
+    background-color: var(--ha-card-background, var(--card-background-color, var(--fallback-card-bg)));
+    border: 2px solid var(--divider-color, var(--fallback-divider));
+    border-radius: var(--ha-card-border-radius, 12px);
+    padding: 16px;
+    box-shadow: var(--ha-card-box-shadow, 0 2px 4px rgba(0,0,0,0.05));
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    opacity: 0.6; /* Dimmed when not selected */
+    filter: grayscale(0.8); /* Desaturated when not selected */
+}
+
+/* Selected State - Green Theme */
+.hidden-checkbox:checked + .card-content {
+    border-color: var(--success-color, var(--fallback-success));
+    background-color: color-mix(in srgb, var(--success-color, var(--fallback-success)), transparent 92%);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    opacity: 1;
+    filter: grayscale(0);
+}
+
+/* Visual Checkmark Indicator */
+.card-content::after {
+    content: '✓';
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--success-color, var(--fallback-success));
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.hidden-checkbox:checked + .card-content::after {
+    opacity: 1;
+}
+
+.card-header {
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: 500;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--divider-color, var(--fallback-divider));
+    color: var(--primary-text-color, var(--fallback-text));
+}
+
+.hidden-checkbox:checked + .card-content .card-header {
+    border-bottom-color: var(--success-color, var(--fallback-success));
+}
+
+.card-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 0.9em;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.detail-label {
+    color: var(--secondary-text-color, var(--fallback-secondary-text));
+}
+
+.detail-value {
+    text-align: right;
+    color: var(--primary-text-color, var(--fallback-text));
+}
+
+.actions {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.select-label {
+    display: block;
+    font-size: 1.1em;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--primary-text-color, var(--fallback-text));
+    text-align: center;
+}
+
+select {
+    padding: 12px;
+    border-radius: var(--ha-border-radius-sm, 6px);
+    border: 1px solid var(--divider-color, var(--fallback-divider));
+    background-color: var(--card-background-color, var(--fallback-card-bg));
+    color: var(--primary-text-color, var(--fallback-text));
+    font-family: inherit;
+    font-size: 1em;
+    width: 100%;
+    max-width: 320px;
+    cursor: pointer;
+}
+
+button {
+    background-color: var(--success-color, var(--fallback-success));
+    color: var(--text-primary-color, #ffffff);
+    border: none;
+    padding: 14px 32px;
+    border-radius: var(--ha-border-radius-sm, 6px);
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 500;
+    transition: opacity 0.2s;
+    width: 100%;
+    max-width: 320px;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.status {
+    padding: 12px;
+    border-radius: var(--ha-border-radius-sm, 6px);
+    margin-bottom: 16px;
+    text-align: center;
+}

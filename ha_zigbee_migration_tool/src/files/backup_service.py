@@ -1,0 +1,33 @@
+import logging
+import os
+import shutil
+from datetime import datetime
+
+from src.config import settings
+
+logger = logging.getLogger(__name__)
+
+
+class BackupService:
+    def create_backup(self, source_path: str, backup_dir: str) -> str:
+        self._validate_source_exists(source_path)
+        self._ensure_backup_dir_exists(backup_dir)
+
+        filename = os.path.basename(source_path)
+        timestamp = datetime.now().strftime(settings.BACKUP_TIMESTAMP_FORMAT)
+        backup_path = os.path.join(backup_dir, f"{filename}.{timestamp}{settings.BACKUP_EXTENSION}")
+
+        shutil.copy2(source_path, backup_path)
+        logger.info(f"[Backup Service] Created backup: {backup_path}")
+        return backup_path
+
+    def _validate_source_exists(self, source_path: str) -> None:
+        if not os.path.exists(source_path):
+            raise FileNotFoundError(f"Source file not found: {source_path}")
+
+    def _ensure_backup_dir_exists(self, backup_dir: str) -> None:
+        if not os.path.exists(backup_dir):
+            os.makedirs(backup_dir)
+
+
+backup_service = BackupService()

@@ -1,0 +1,7 @@
+#,ieee,logical_type,complex_descriptor_available,user_descriptor_available,reserved,aps_flags,frequency_band,mac_capability_flags,manufacturer_code,maximum_buffer_size,maximum_incoming_transfer_size,server_mask,maximum_outgoing_transfer_size,descriptor_capability_field
+1,00:00:00:00:00:00:00:01,0,0,0,0,0,8,143,43981,82,128,11329,128,0
+2,00:00:00:00:00:00:00:02,1,0,0,0,0,8,142,4417,66,66,10752,66,0
+3,00:00:00:00:00:00:00:03,1,0,0,0,0,8,142,4417,66,66,10752,66,0
+4,00:00:00:00:00:00:00:04,1,0,0,0,0,8,142,4417,66,66,10752,66,0
+5,00:00:00:00:00:00:00:05,1,0,0,0,0,8,142,4417,66,66,10752,66,0
+6,00:00:00:00:00:00:00:06,1,0,0,0,0,8,142,4417,66,66,10752,66,0

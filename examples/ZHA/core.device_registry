@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "minor_version": 12,
+  "key": "core.device_registry",
+  "data": {
+    "devices": [
+      {
+        "area_id": null, "config_entries": ["__ANONYMIZED__"], "configuration_url": null, "connections": [], "created_at": "2024-12-17T19:00:10.233584+00:00", "disabled_by": null, "entry_type": "service", "hw_version": null, "id": "__ANONYMIZED__", "identifiers": [["sun", "__ANONYMIZED__"]], "manufacturer": null, "model": null, "name_by_user": null, "name": "Sun", "sw_version": null, "via_device_id": null
+      },
+      {
+        "area_id": "living_room", "config_entries": ["__ANONYMIZED__"], "configuration_url": null, "connections": [["zigbee", "00:00:00:00:00:00:00:01"]], "created_at": "2025-07-24T10:44:43.836572+00:00", "disabled_by": null, "entry_type": null, "hw_version": null, "id": "8eb73bcb9698f53772bbaf1ffbd2413a_anonymized", "identifiers": [["zha", "00:00:00:00:00:00:00:01"]], "manufacturer": "Nabu Casa", "model": "Home Assistant Connect ZBT-1", "name_by_user": "Fake Coordinator", "name": "Fake Coordinator Name", "sw_version": null, "via_device_id": null
+      },
+      {
+        "area_id": "living_room", "config_entries": ["__ANONYMIZED__"], "configuration_url": null, "connections": [["zigbee", "00:00:00:00:00:00:00:02"]], "created_at": "2025-07-24T10:46:16.413353+00:00", "disabled_by": null, "entry_type": null, "hw_version": null, "id": "fa20af0835447a7463a751167fcc5749_anonymized", "identifiers": [["zha", "00:00:00:00:00:00:00:02"]], "manufacturer": "_TZ3000_gjnozsaz", "model": "TS011F", "name_by_user": "Fake 3D Printer Switch", "name": "_TZ3000_gjnozsaz TS011F", "sw_version": "0x0000004d", "via_device_id": "8eb73bcb9698f53772bbaf1ffbd2413a_anonymized"
+      },
+      {
+        "area_id": "kitchen", "config_entries": ["__ANONYMIZED__"], "configuration_url": null, "connections": [["zigbee", "00:00:00:00:00:00:00:03"]], "created_at": "2025-07-25T09:58:09.244659+00:00", "disabled_by": null, "entry_type": null, "hw_version": null, "id": "fe0df5e835d007135eafe561314c4ebb_anonymized", "identifiers": [["zha", "00:00:00:00:00:00:00:03"]], "manufacturer": "_TZ3000_eg7awg6a", "model": "TS130F", "name_by_user": "Fake Kitchen Blind", "name": "_TZ3000_eg7awg6a TS130F", "sw_version": "0x00000040", "via_device_id": "8eb73bcb9698f53772bbaf1ffbd2413a_anonymized"
+      },
+      {
+        "area_id": null, "config_entries": ["__ANONYMIZED__"], "configuration_url": null, "connections": [["zigbee", "00:00:00:00:00:00:00:04"]], "created_at": "2025-08-04T13:50:35.379806+00:00", "disabled_by": null, "entry_type": null, "hw_version": null, "id": "c6639e07845a8e346ec259fba1f2ab07_anonymized", "identifiers": [["zha", "00:00:00:00:00:00:00:04"]], "manufacturer": "_TZE200_abatw3kj", "model": "TS0601", "name_by_user": "Fake Power Meter", "name": "_TZE200_abatw3kj TS0601", "sw_version": "0x00000046", "via_device_id": "8eb73bcb9698f53772bbaf1ffbd2413a_anonymized"
+      },
+      {
+        "area_id": "balcony", "config_entries": ["__ANONYMIZED__"], "configuration_url": null, "connections": [["zigbee", "00:00:00:00:00:00:00:05"]], "created_at": "2025-11-26T19:16:21.993518+00:00", "disabled_by": null, "entry_type": null, "hw_version": null, "id": "7252256aa3a688c7a30dc928e43b3380_anonymized", "identifiers": [["zha", "00:00:00:00:00:00:00:05"]], "manufacturer": "_TZ3000_eg7awg6a", "model": "TS130F", "name_by_user": "Fake Balcony Blind", "name": "_TZ3000_eg7awg6a TS130F", "sw_version": "0x00000040", "via_device_id": "8eb73bcb9698f53772bbaf1ffbd2413a_anonymized"
+      },
+      {
+        "area_id": "office", "config_entries": ["__ANONYMIZED__"], "configuration_url": null, "connections": [["zigbee", "00:00:00:00:00:00:00:06"]], "created_at": "2025-11-26T20:21:31.393894+00:00", "disabled_by": null, "entry_type": null, "hw_version": null, "id": "a6330feb46e5740a6695c047f11f943a_anonymized", "identifiers": [["zha", "00:00:00:00:00:00:00:06"]], "manufacturer": "_TZ3000_eg7awg6a", "model": "TS130F", "name_by_user": "Fake Office Blind", "name": "_TZ3000_eg7awg6a TS130F", "sw_version": "0x00000040", "via_device_id": "8eb73bcb9698f53772bbaf1ffbd2413a_anonymized"
+      }
+    ]
+  }
+}

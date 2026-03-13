@@ -1,0 +1,142 @@
+#,type,name,tbl_name,rootpage,sql
+1,table,sqlite_sequence,sqlite_sequence,27,"CREATE TABLE sqlite_sequence(name,seq)"
+2,table,devices_v14,devices_v14,28,"CREATE TABLE devices_v14 (
+    ieee ieee NOT NULL,
+    nwk INTEGER NOT NULL,
+    status INTEGER NOT NULL,
+    last_seen REAL NOT NULL
+)"
+3,index,devices_idx_v14,devices_v14,29,"CREATE UNIQUE INDEX devices_idx_v14
+    ON devices_v14(ieee)"
+4,table,endpoints_v14,endpoints_v14,30,"CREATE TABLE endpoints_v14 (
+    ieee ieee NOT NULL,
+    endpoint_id INTEGER NOT NULL,
+    profile_id INTEGER NOT NULL,
+    device_type INTEGER NOT NULL,
+    status INTEGER NOT NULL,
+
+    FOREIGN KEY(ieee)
+        REFERENCES devices_v14(ieee)
+        ON DELETE CASCADE
+)"
+5,index,endpoint_idx_v14,endpoints_v14,31,"CREATE UNIQUE INDEX endpoint_idx_v14
+    ON endpoints_v14(ieee, endpoint_id)"
+6,table,clusters_v14,clusters_v14,32,"CREATE TABLE clusters_v14 (
+    ieee ieee NOT NULL,
+    endpoint_id INTEGER NOT NULL,
+    cluster_type INTEGER NOT NULL,
+    cluster_id INTEGER NOT NULL,
+
+    FOREIGN KEY(ieee, endpoint_id)
+        REFERENCES endpoints_v14(ieee, endpoint_id)
+        ON DELETE CASCADE
+)"
+7,index,clusters_idx_v14,clusters_v14,33,"CREATE UNIQUE INDEX clusters_idx_v14
+    ON clusters_v14(ieee, endpoint_id, cluster_type, cluster_id)"
+8,table,attributes_cache_v14,attributes_cache_v14,34,"CREATE TABLE attributes_cache_v14 (
+    ieee ieee NOT NULL,
+    endpoint_id INTEGER NOT NULL,
+    cluster_type INTEGER NOT NULL,
+    cluster_id INTEGER NOT NULL,
+    attr_id INTEGER NOT NULL,
+    manufacturer_code INTEGER,
+    
+    
+    manufacturer_code_idx INTEGER NOT NULL GENERATED ALWAYS AS (IFNULL(manufacturer_code, -2)) STORED,
+    status INTEGER,
+    value BLOB,
+    last_updated REAL NOT NULL,
+
+    
+    
+    FOREIGN KEY(ieee)
+        REFERENCES devices_v14(ieee)
+        ON DELETE CASCADE
+)"
+9,index,attributes_cache_idx_v14,attributes_cache_v14,35,"CREATE UNIQUE INDEX attributes_cache_idx_v14
+    ON attributes_cache_v14(ieee, endpoint_id, cluster_type, cluster_id, attr_id, manufacturer_code_idx)"
+10,table,neighbors_v14,neighbors_v14,36,"CREATE TABLE neighbors_v14 (
+    device_ieee ieee NOT NULL,
+    extended_pan_id ieee NOT NULL,
+    ieee ieee NOT NULL,
+    nwk INTEGER NOT NULL,
+    device_type INTEGER NOT NULL,
+    rx_on_when_idle INTEGER NOT NULL,
+    relationship INTEGER NOT NULL,
+    reserved1 INTEGER NOT NULL,
+    permit_joining INTEGER NOT NULL,
+    reserved2 INTEGER NOT NULL,
+    depth INTEGER NOT NULL,
+    lqi INTEGER NOT NULL,
+
+    FOREIGN KEY(device_ieee)
+        REFERENCES devices_v14(ieee)
+        ON DELETE CASCADE
+)"
+11,index,neighbors_idx_v14,neighbors_v14,38,"CREATE INDEX neighbors_idx_v14
+    ON neighbors_v14(device_ieee)"
+12,table,routes_v14,routes_v14,39,"CREATE TABLE routes_v14 (
+    device_ieee ieee NOT NULL,
+    dst_nwk INTEGER NOT NULL,
+    route_status INTEGER NOT NULL,
+    memory_constrained INTEGER NOT NULL,
+    many_to_one INTEGER NOT NULL,
+    route_record_required INTEGER NOT NULL,
+    reserved INTEGER NOT NULL,
+    next_hop INTEGER NOT NULL
+)"
+13,index,routes_idx_v14,routes_v14,40,"CREATE INDEX routes_idx_v14
+    ON routes_v14(device_ieee)"
+14,table,node_descriptors_v14,node_descriptors_v14,41,"CREATE TABLE node_descriptors_v14 (
+    ieee ieee NOT NULL,
+
+    logical_type INTEGER NOT NULL,
+    complex_descriptor_available INTEGER NOT NULL,
+    user_descriptor_available INTEGER NOT NULL,
+    reserved INTEGER NOT NULL,
+    aps_flags INTEGER NOT NULL,
+    frequency_band INTEGER NOT NULL,
+    mac_capability_flags INTEGER NOT NULL,
+    manufacturer_code INTEGER NOT NULL,
+    maximum_buffer_size INTEGER NOT NULL,
+    maximum_incoming_transfer_size INTEGER NOT NULL,
+    server_mask INTEGER NOT NULL,
+    maximum_outgoing_transfer_size INTEGER NOT NULL,
+    descriptor_capability_field INTEGER NOT NULL,
+
+    FOREIGN KEY(ieee)
+        REFERENCES devices_v14(ieee)
+        ON DELETE CASCADE
+)"
+15,index,node_descriptors_idx_v14,node_descriptors_v14,42,"CREATE UNIQUE INDEX node_descriptors_idx_v14
+    ON node_descriptors_v14(ieee)"
+16,table,groups_v14,groups_v14,43,"CREATE TABLE groups_v14 (
+    group_id INTEGER NOT NULL,
+    name TEXT NOT NULL
+)"
+17,index,groups_idx_v14,groups_v14,44,"CREATE UNIQUE INDEX groups_idx_v14
+    ON groups_v14(group_id)"
+18,table,group_members_v14,group_members_v14,45,"CREATE TABLE group_members_v14 (
+    group_id INTEGER NOT NULL,
+    ieee ieee NOT NULL,
+    endpoint_id INTEGER NOT NULL,
+
+    FOREIGN KEY(group_id)
+        REFERENCES groups_v14(group_id)
+        ON DELETE CASCADE,
+    FOREIGN KEY(ieee, endpoint_id)
+        REFERENCES endpoints_v14(ieee, endpoint_id)
+        ON DELETE CASCADE
+)"
+19,index,group_members_idx_v14,group_members_v14,46,"CREATE UNIQUE INDEX group_members_idx_v14
+    ON group_members_v14(group_id, ieee, endpoint_id)"
+20,table,relays_v14,relays_v14,47,"CREATE TABLE relays_v14 (
+    ieee ieee NOT NULL,
+    relays BLOB NOT NULL,
+
+    FOREIGN KEY(ieee)
+        REFERENCES devices_v14(ieee)
+        ON DELETE CASCADE
+)"
+21,index,relays_idx_v14,relays_v14,48,"CREATE UNIQUE INDEX relays_idx_v14
+    ON relays_v14(ieee)"
