@@ -14,30 +14,39 @@
 
     <form id="migrationForm">
         <div class="device-grid">
-            {% for device in zha_devices %}
-            <label class="device-label">
-                <input type="checkbox" name="ieee" value="{{ device.ieee }}" class="hidden-checkbox" checked>
-                <div class="card-content">
-                    <div class="card-header">
-                        {{ device.friendly_name if device.friendly_name else "Unknown Device" }}
+            {% if zha_devices %}
+                {% for device in zha_devices %}
+                <label class="device-label">
+                    <input type="checkbox" name="ieee" value="{{ device.ieee }}" class="hidden-checkbox" checked>
+                    <div class="card-content">
+                        <div class="card-header">
+                            {{ device.friendly_name if device.friendly_name else "Unknown Device" }}
+                        </div>
+                        <div class="card-details">
+                            <div class="detail-row">
+                                <span class="detail-label">IEEE</span>
+                                <span class="detail-value">{{ device.ieee }}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Manufacturer</span>
+                                <span class="detail-value">{{ device.manufacturer }}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Model</span>
+                                <span class="detail-value">{{ device.model }}</span>
+                            </div>
+                        </div>
                     </div>
+                </label>
+                {% endfor %}
+            {% else %}
+                <div class="card-content no-devices-card">
+                    <div class="card-header">No Devices Found</div>
                     <div class="card-details">
-                        <div class="detail-row">
-                            <span class="detail-label">IEEE</span>
-                            <span class="detail-value">{{ device.ieee }}</span>
-                        </div>
-                        <div class="detail-row">
-                            <span class="detail-label">Manufacturer</span>
-                            <span class="detail-value">{{ device.manufacturer }}</span>
-                        </div>
-                        <div class="detail-row">
-                            <span class="detail-label">Model</span>
-                            <span class="detail-value">{{ device.model }}</span>
-                        </div>
+                        <p>No new devices were discovered in ZHA that are not already in Zigbee2MQTT.</p>
                     </div>
                 </div>
-            </label>
-            {% endfor %}
+            {% endif %}
         </div>
 
         <div class="actions">
@@ -45,7 +54,7 @@
             <select id="direction">
                 <option value="zha_to_z2m">ZHA to Zigbee2MQTT</option>
             </select>
-            <button type="submit" id="submitBtn">Start Migration</button>
+            <button type="submit" id="submitBtn" {% if not zha_devices %}disabled{% endif %}>Start Migration</button>
         </div>
     </form>
 </div>

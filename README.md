@@ -46,9 +46,9 @@ The table below lists the files inside the `ha_zigbee_migration_tool` directory 
 
 1. Stop Zigbee2MQTT: Before copying the files, ensure the Zigbee2MQTT app is stopped to prevent file access conflicts.
 2. Connect to Home Assistant via SFTP (e.g., using FileZilla).
-3. Upload the ha_zigbee_migration_tool folder directly into the `/addons/` directory. 
+3. Upload the `ha_zigbee_migration_tool` folder directly into the `/addons/` directory. 
 4. Open your Home Assistant web interface. 
-5. Go to `Settings` > ``Apps, then click the `Install app` button in the bottom right corner. 
+5. Go to `Settings` > `Apps`, then click the `Install app` button in the bottom right corner. 
 6. Click the refresh icon shaped like a circular arrow in the top right corner. 
 7. Refresh your web browser. 
 8. Find your migration tool in the `Local apps` section. 

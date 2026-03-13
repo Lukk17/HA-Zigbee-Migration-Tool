@@ -46,9 +46,15 @@ h1 {
 
 .device-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: 1fr; /* Default to single column */
     gap: 16px;
     margin: 20px 0;
+}
+
+@media (min-width: 600px) {
+    .device-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
 }
 
 .device-label {
@@ -71,6 +77,13 @@ h1 {
     position: relative;
     opacity: 0.6; /* Dimmed when not selected */
     filter: grayscale(0.8); /* Desaturated when not selected */
+}
+
+.no-devices-card {
+    opacity: 1;
+    filter: none;
+    text-align: center;
+    cursor: default;
 }
 
 /* Selected State - Green Theme */
