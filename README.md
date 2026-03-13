@@ -2,9 +2,24 @@
 
 Automated local migration of Zigbee devices between ZHA and Zigbee2MQTT without requiring physical access or re-pairing.
 
+[![Open your Home Assistant instance and show the add add-on repository dialog with a specific repository URL pre-filled.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2FLukk17%2FHA-Zigbee-Migration-Tool)
+
 ---
 
-## Usage Workflow
+### Installation Instructions:
+
+1. Go to your Home Assistant Settings.
+2. Navigate to Add-ons and click Add-on Store in the bottom right.
+3. Click the three dots menu in the top right corner and select Repositories.
+4. Paste this exact URL into the text box: https://github.com/Lukk17/HA-Zigbee-Migration-Tool
+5. Click Add, then close the dialog.
+6. Refresh the Add-on Store page.
+7. Scroll down to find the new repository section and click on HA Zigbee Migration Tool.
+8. Click Install.
+
+---
+
+### Usage Workflow
 
 **IMPORTANT:** To prevent database corruption, you must stop the Zigbee2MQTT add-on before running the migration.
 
@@ -54,13 +69,48 @@ The table below lists the files inside the `ha_zigbee_migration_tool` directory 
 8. Find your migration tool in the `Local apps` section. 
 9. Click on it and select `Install`. 
 10. After the build finishes, verify the settings on the Configuration tab, then click Start on the Info tab.
+
 ---
 
-## Local Development
+### Testing Migration via Force Removal
+
+Follow these exact steps to test the migration loop.
+
+1. Force Remove from Zigbee2MQTT
+* Open the Zigbee2MQTT web interface
+* Go to the Devices tab
+* Click on the device you want to test
+* Go to the Settings tab for that device
+* Click the red Force Remove button
+* Verify the device no longer appears in your device list
+
+2. Run the Migration Tool
+* Open your HA Zigbee Migration Tool web interface
+* The device you just removed will now appear in the grid as available
+* Check the box next to this device
+* Click Start Migration
+* Wait for the success message to appear on the screen
+
+3. Re-announce the Device
+* Go back to the Zigbee2MQTT web interface
+* Click the Permit join button in the top menu
+* The device is already powered on, so it will announce its presence to the open network
+* Wait for the device status to change to Online
+* Click the Disable join button
+
+4. Reconfigure the Device
+* Click on the device in the Zigbee2MQTT list
+* Go to the About tab
+* Click the Reconfigure button
+* Wait for the green success notification to appear in the bottom right corner
+
+---
+
+### Local Development
 
 This project is set up for easy local development and testing using a set of anonymized example files.
 
-### 1. Local Environment Setup
+#### 1. Local Environment Setup
 
 Ensure you have Python 3.12+ installed. It is recommended to use a virtual environment.
 
@@ -93,7 +143,7 @@ Z2M_DB_PATH="../examples/Z2M/database.db"
 OPTIONS_PATH="../examples/options.json"
 ```
 
-### 3. Running the Application Locally
+#### 3. Running the Application Locally
 
 Once the `.env` file is in place, you can run the application directly:
 
@@ -104,7 +154,7 @@ python ha_zigbee_migration_tool/src/main.py
 
 The web server will start, and the UI will be populated with the data from the `examples` folder.
 
-### 4. Running Tests
+#### 4. Running Tests
 
 All tests are located in the `ha_zigbee_migration_tool/tests` directory.
 
@@ -114,7 +164,7 @@ python -m pytest ha_zigbee_migration_tool/tests --verbose
 
 ---
 
-## Example Data
+### Example Data
 
 The `examples` directory provides a complete set of fully anonymized data for testing the migration tool.
 
@@ -123,7 +173,7 @@ The `examples` directory provides a complete set of fully anonymized data for te
 *   `options.json`: A dummy options file required by the add-on structure.
 *   `anonymization.sql`: A generic SQL template that can be used to anonymize your own `zigbee.db` file if you wish to create a new set of test data.
 
-### Anonymization Details
+#### Anonymization Details
 
 The example files have been carefully anonymized to remove all sensitive information. The following table details what was changed in the `zigbee.db` file.
 
