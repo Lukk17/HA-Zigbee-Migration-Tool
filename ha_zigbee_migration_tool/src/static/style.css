@@ -49,12 +49,23 @@ h1 {
     grid-template-columns: 1fr; /* Default to single column */
     gap: 16px;
     margin: 20px 0;
+    justify-items: center; /* Center items horizontally */
 }
 
 @media (min-width: 600px) {
     .device-grid {
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+        justify-content: center;
     }
+}
+
+/* Ensure cards don't grow too much when auto-fit is used */
+.device-label, .no-devices-card {
+    max-width: 400px;
+    width: 100%;
 }
 
 .device-label {
